@@ -10,7 +10,7 @@ pipeline {
       
       stage('Deliver') {
           steps {
-                 sh '/usr/local/bin/aws lambda update-function-code --function-name http-api-gateway --zip-file fileb://lambda_function.zip'
+		sh"/usr/local/bin/aws lambda update-function-code --function-name http-api-gateway --zip-file fileb://lambda_function.zip"
           }
       }
       
