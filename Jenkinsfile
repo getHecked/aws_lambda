@@ -4,19 +4,19 @@ pipeline {
    stages {
       stage('Build') {
           steps {
-              sh 'zip main.zip main'
+              sh 'zip lambda_function.zip lambda_function.py'
           }
       }
       
       stage('Deliver') {
           steps {
-                 sh '/usr/local/bin/aws lambda update-function-code --function-name goHello --zip-file fileb://main.zip'
+                 sh '/usr/local/bin/aws lambda update-function-code --function-name http-api-gateway --zip-file fileb://lambda_function.zip'
           }
       }
       
       stage('Integration test') {
           steps {
-                 sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/e8397d94506a6c6901bc"'
+                 sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/02b4e209c969a5a5c815"'
           }
       }
    }
