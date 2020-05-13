@@ -4,13 +4,13 @@ pipeline {
    stages {
       stage('Build') {
           steps {
-              sh 'zip snoop.zip snoop.py'
+              sh 'zip main.zip main'
           }
       }
       
       stage('Deliver') {
           steps {
-                 sh '/usr/local/bin/aws lambda update-function-code --function-name snoop --zip-file fileb://snoop.zip'
+                 sh '/usr/local/bin/aws lambda update-function-code --function-name goHello --zip-file fileb://main.zip'
           }
       }
       
